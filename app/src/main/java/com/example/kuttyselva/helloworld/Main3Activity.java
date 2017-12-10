@@ -1,0 +1,51 @@
+package com.example.kuttyselva.helloworld;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.annotation.DrawableRes;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class Main3Activity extends AppCompatActivity {
+TextView t1;
+Button b;
+String va;
+RadioGroup radi;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
+        b = (Button) findViewById(R.id.but);
+        t1 = (TextView) findViewById(R.id.t1);
+        va = getIntent().getExtras().getString("value");
+        t1.setText("welcome "+va);
+        radi=(RadioGroup)findViewById(R.id.radi);
+        radi.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radi, int i) {
+                switch (i)
+                {
+                    case R.id.radioButton:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF4081"));
+                        break;
+                    case R.id.radioButton2:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#303F9F"));
+                        break;
+                    case R.id.radioButton3:
+                        getWindow().getDecorView().setBackgroundColor(Color.parseColor("#000000"));
+                        break;
+                }
+            }
+        });
+    }
+    public void prev(View v)
+    {
+        Intent i= new Intent(this,Main2Activity.class);
+        startActivity(i);
+        finish();
+    }
+}
